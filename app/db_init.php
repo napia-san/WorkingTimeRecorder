@@ -10,8 +10,7 @@ try {
     ."("
     ."user_id CHAR(8),"
     ."name CHAR(32),"
-    ."calendar_id CHAR(140),"
-    ."pass CHAR(32)"
+    ."calendar_id CHAR(140)"
     .");";
     $stmt = $pdo -> query($sql);
 } catch(PDOException $e) {

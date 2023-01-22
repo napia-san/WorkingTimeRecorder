@@ -22,5 +22,24 @@
 </html>
 
 <?php
+/* 読み込み
+-----------------------*/
+require_once("db_process.php");// DBの入出力関連
 
+//利用登録処理
+if($_POST['register'] && !empty($_POST['user_id']) && !empty($_POST['user_name']) && !empty($_POST['cal_id'])){
+	user_registration($_POST['user_id'], $_POST['user_name'], $_POST['cal_id']); // [DB]新規ユーザー情報登録
+	echo "<p class=\"result\">登録完了しました．</p>";
+}elseif($_POST['register']){/**不正入力判定 */
+	if(empty($_POST['user_id'])){
+		echo '<p class="error">[ERROR]IDが入力されていません.<br></p>';
+	}
+	if(empty($_POST['user_name'])){
+		echo '<p class="error">[ERROR]ユーザー名が入力されていません.<br></p>';
+	}
+	if(empty($_POST['cal_id'])){
+		echo '<p class="error">[ERROR]GoogleカレンダーIDが入力されていません.<br></p>';
+	}
+	// TODO：その他バリデーション各種
+}
 ?>

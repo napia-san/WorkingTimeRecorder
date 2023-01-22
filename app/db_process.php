@@ -44,7 +44,7 @@ function put_user_status($user_id, $event_id) {
 }
 
 // [DB]作業開始時刻とイベントidの取得
-function get_event_id($user_id) {
+function get_event_info($user_id) {
     require_once("db_connector.php"); //DB接続関連
     $pdo = db_connector("main_db");
     try {
@@ -80,4 +80,23 @@ function delete_event_info($user_id) {
     $pdo = null;
     
     return $finish_time;
+}
+
+function user_registration($user_id, $user_name, $cal_id) {
+    require_once("db_connector.php"); //DB接続関連
+    $pdo = db_connector();
+    
+    try {
+        $stmt = $pdo -> prepare("INSERT INTO user_data(user_id, name, calendar_id) VALUES (:user_id, :name, :calendar_id)");
+        $stmt -> bindParam(':user_id', $user_id, PDO::PARAM_STR);
+        $stmt -> bindParam(':name',$user_name , PDO::PARAM_STR);
+        $stmt -> bindParam(':calendar_id', $cal_id, PDO::PARAM_STR);
+        $stmt -> execute();
+    } catch(PDOException $e) {
+    	echo $e->getMessage();
+    	die();
+    }
+    $pdo = null;
+    
+    return $time;
 }
