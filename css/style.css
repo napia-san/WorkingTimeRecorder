@@ -1,11 +1,11 @@
-header{
+header {
     width: 100vw;
     height: 10vw;
     background-color: #393e46;
     display: flex;
 }
 
-.headerLeft{
+.headerLeft {
     padding: 0 30px;
     font-size: 2vw;
     display: flex;
